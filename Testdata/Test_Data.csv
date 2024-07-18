@@ -1,0 +1,176 @@
+Testcase ID,Testcase Type,endpoint,method,auth_required,headers,params,payload,expected_status_code,expected_response_keys,expected_responce_body
+Dash_API_TC_001,Positive,/job/count,GET,TRUE,"{""Content-Type"":""application/json""}","{""org_id"":""1""}",,200,"code,Job_count","{
+    ""code"": 2000,
+    ""Job_count"": ""12""
+}"
+Dash_API_TC_002,Positive,/job/applicants/count,GET,TRUE,"{""Content-Type"":""application/json""}","{""org_id"":""1""}",,200,"application_count,code","{
+    ""code"": 2000,
+    ""application_count"": ""199""
+}"
+Dash_API_TC_006,Positive,/job/status,GET,TRUE,"{""Content-Type"":""application/json""}","{""context"":""applicant""}",,200,"code,message","{
+    ""code"": 2000,
+    ""message"": [
+        {
+            ""pid"": 1,
+            ""name"": ""Application received"",
+            ""code"": ""APPLICATION_RECEIVED""
+        },
+        {
+            ""pid"": 2,
+            ""name"": ""Shortlisted"",
+            ""code"": ""SHORTLISTED""
+        },
+        {
+            ""pid"": 3,
+            ""name"": ""Technical Interview"",
+            ""code"": ""TECHNICAL_INTERVIEW""
+        },
+        {
+            ""pid"": 4,
+            ""name"": ""Face to Face Interview"",
+            ""code"": ""FACE_TO_FACE_INTERVIEW""
+        },
+        {
+            ""pid"": 5,
+            ""name"": ""Job Offer Sent"",
+            ""code"": ""JOB_OFFER_SENT""
+        },
+        {
+            ""pid"": 6,
+            ""name"": ""Rejected"",
+            ""code"": ""REJECTED""
+        }
+    ]
+}"
+Dash_API_TC_007,Positive,/job/applicant,GET,TRUE,"{""Content-Type"":""application/json""}","{""job_id"":4,""pid"":52,""status"":1}",,200,"code,data","{
+    ""code"": 2000,
+    ""data"": [
+        {
+            ""pid"": 52,
+            ""job_id"": 4,
+            ""candidate_name"": null,
+            ""gender"": null,
+            ""email"": null,
+            ""mobile"": null,
+            ""status"": ""Application received"",
+            ""status_pid"": 1,
+            ""created_at"": ""2024-05-05T12:35:48.417Z"",
+            ""education_qualification"": null,
+            ""work_experience"": null,
+            ""date_of_birth"": null,
+            ""your_location"": null,
+            ""referal_institute"": null
+        }
+    ]
+}"
+Dash_API_TC_008,Positive,/job/applicant/3,PUT,TRUE,"{""Content-Type"":""application/json""}",,"{
+    ""status_pid"": 1
+    
+}",200,"code,message","{
+    ""code"": 2000,
+    ""message"": ""Status Updated Successfully""
+}"
+Dash_API_TC_009,Positive,/job/locations,GET,TRUE,"{""Content-Type"":""application/json""}","{""offset"":1,""limit"":10}",,200,"code,data","{
+    ""code"": 2000,
+    ""data"": [
+        {
+            ""id"": 2,
+            ""name"": ""Ghaziabad"",
+            ""state_pid"": 29
+        },
+        {
+            ""id"": 3,
+            ""name"": ""Meerut"",
+            ""state_pid"": 29
+        },
+        {
+            ""id"": 4,
+            ""name"": ""Gurgaon"",
+            ""state_pid"": 8
+        },
+        {
+            ""id"": 5,
+            ""name"": ""Faridabad"",
+            ""state_pid"": 8
+        },
+        {
+            ""id"": 6,
+            ""name"": ""Saharanpur"",
+            ""state_pid"": 29
+        },
+        {
+            ""id"": 7,
+            ""name"": ""Haridwar"",
+            ""state_pid"": 30
+        },
+        {
+            ""id"": 8,
+            ""name"": ""Bijnor"",
+            ""state_pid"": 29
+        },
+        {
+            ""id"": 9,
+            ""name"": ""Dehradun"",
+            ""state_pid"": 30
+        },
+        {
+            ""id"": 10,
+            ""name"": ""Kotdwara"",
+            ""state_pid"": 30
+        },
+        {
+            ""id"": 11,
+            ""name"": ""Jaipur"",
+            ""state_pid"": 24
+        }
+    ]
+}"
+Dash_API_TC_012,Positive,/job/2/providers,GET,TRUE,"{""Content-Type"":""application/json""}","{""pid"":1,""limit"":20}",,200,"code,data","{
+    ""code"": 2000,
+    ""data"": {
+        ""provider_pid"": 1,
+        ""attributes"": [
+            {
+                ""label"": ""name"",
+                ""content"": ""EPG Tech Solutions""
+            },
+            {
+                ""label"": ""website"",
+                ""content"": ""epgtech@gmail.com""
+            },
+            {
+                ""label"": ""address"",
+                ""content"": ""Bangalore,India""
+            },
+            {
+                ""label"": ""logo"",
+                ""content"": ""text""
+            }
+        ]
+    }
+}"
+Dash_API_TC_012-A,Negative,/job/2/providers,POST,TRUE,"{""Content-Type"":""application/json""}","{""pid"":1,""limit"":20}",,404,,
+Dash_API_TC_012-B,Negative,/job/2/providers,GET,FALSE,"{""Content-Type"":""application/json""}","{""pid"":1,""limit"":20}",,401,"code,message","{
+    ""code"": 1000,
+    ""message"": ""TOKEN_REQUIRED""
+}"
+Dash_API_TC_012-C,Positive,/job/2/providers,GET,TRUE,"{""Content-Type"":""application/json""}","{""limit"":20}",,200,"code,data","{
+    ""code"": 2000,
+    ""data"": [
+        {
+            ""pid"": 1,
+            ""provider_name"": ""EPG Tech Solutions"",
+            ""media"": ""text""
+        }
+    ]
+}"
+Dash_API_TC_012-D,Positive,/job/2/providers,GET,TRUE,"{""Content-Type"":""application/json""}","{""pid"":1000,""limit"":20}",,200,"code,message","{""code"": 1000, ""message"": ""Provider_id is Invalid""}"
+Dash_API_TC_013,Positive,/job/transactionCount,GET,TRUE,"{""Content-Type"":""application/json""}",,,200,"code,transactionCount","{
+    ""code"": 2000,
+    ""transactionCount"": 80
+}"
+Dash_API_TC_013-A,Negative,/job/transactionCount,POST,TRUE,"{""Content-Type"":""application/json""}",,,404,,
+Dash_API_TC_013-B,Negative,/job/transactionCount,GET,FALSE,"{""Content-Type"":""application/json""}",,,401,"code,message","{
+    ""code"": 1000,
+    ""message"": ""TOKEN_REQUIRED""
+}"

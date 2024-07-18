@@ -1,0 +1,53 @@
+Testcase ID,Testcase Type,url,method,headers,payload,expected_status_code,expected_response_keys,expected_responce_body,,,,,,,,,,,
+TC_Soundbox_API_06,Positive,https://bscytxzsc3.execute-api.ap-south-1.amazonaws.com/payments/summary/get,POST,"{""Content-Type"":""application/json""}","{ 
+    ""uuid"":""1234"",
+    ""date"": ""2024-07-05""
+}",200,"code,data","{
+    ""code"": 2000,
+    ""data"": {
+        ""count"": 3,
+        ""amount"": 30,
+        ""current_date"": ""2024-07-05""
+    }
+}",,,,,,,,,,,
+TC_Soundbox_API_06-A,negative,https://bscytxzsc3.execute-api.ap-south-1.amazonaws.com/payments/summary/invalid,POST,"{""Content-Type"":""application/json""}","{
+
+  ""uuid"": ""1234""
+}",404,,,,,,,,,,,,,
+TC_Soundbox_API_06-B,negative,https://bscytxzsc3.execute-api.ap-south-1.amazonaws.com/payments/summary/get,POST,"{""Content-Type"":""application/json""}","{
+  ""uuid"": ""32532mkdmfinvalid""
+}",200,"message,code","{
+    ""code"": 1000,
+    ""message"": ""no record found""
+}",,,,,,,,,,,
+TC_Soundbox_API_06-C,Positive,https://bscytxzsc3.execute-api.ap-south-1.amazonaws.com/payments/summary/get,POST,"{""Content-Type"":""application/json""}","{ 
+    ""uuid"":""1234"",
+    ""date"": ""2024-07-05""
+}",200,"data,code","{
+    ""code"": 2000,
+    ""data"": {
+        ""count"": 3,
+        ""amount"": 30,
+        ""current_date"": ""2024-07-05""
+    }
+}",,,,,,,,,,,
+TC_Soundbox_API_06-D,negative,https://bscytxzsc3.execute-api.ap-south-1.amazonaws.com/payments/summary/get,POST,"{""Content-Type"":""application/json""}","{
+  ""date"": ""10/2/2022""
+}",200,"message,code","{
+    ""code"": 1000,
+    ""message"": [
+        ""UUID is required""
+    ]
+}",,,,,,,,,,,0
+TC_Soundbox_API_06-E,negative,https://bscytxzsc3.execute-api.ap-south-1.amazonaws.com/payments/summary/get,POST,"{""Content-Type"":""application/json""}","{
+  ""uuid"":1234
+}",200,"message,code","{
+    ""code"": 1000,
+    ""message"": [
+        ""Invalid UUID""
+    ]
+}",,,,,,,,,,,0
+TC_Soundbox_API_06-F,negative,https://bscytxzsc3.execute-api.ap-south-1.amazonaws.com/payments/summary/get,GET,"{""Content-Type"":""application/json""}","{
+  
+  ""uuid"": ""1234""
+}",404,,,,,,,,,,,,,0

@@ -1,0 +1,26 @@
+[pytest]
+addopts = -vs -rf --html-report=./Report --title='PYTEST REPORT'
+log_cli = true
+log_cli_level = INFO
+log_file = test.log
+log_file_level = INFO
+# addopts = -vs -rf --html-report=./Report/report --title='PYTEST REPORT'
+
+[DEFAULT]
+LogsDirectory = ../Logs
+CSVFilePath = ../Testdata/Test_Data.csv
+Base_url = https://dev-onest.tibilprojects.com
+
+[authorization]
+auth_url = https://dev-onest.tibilprojects.com/keycloak/sign-in
+auth_method = POST
+auth_headers = {"Content-Type": "application/json"}
+auth_payload = {"username": "beckn@gmail.com", "password": "beckn@123"}
+
+
+
+
+
+
+
+
